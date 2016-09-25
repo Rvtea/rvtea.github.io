@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Front End,JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="心血来潮，做了个自己可以用的提取颜色的工具，目前Demo非常土鳖，但是基本功能算是有了。
+Demo 地址：https://rvtea.github.io/ColorExtractTool/
+项目地址：https://github.com/Rvtea/ColorExtractTool
+
+引子受一条微博的启发，找到了原始的出处Design Seeds，然后自己思考了下基本原理觉得可以自己做，于是趁着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Color Extract Tool 颜色提取小工具">
+<meta property="og:url" content="http://rvtea.github.io/2016/09/25/color-extract-tool/index.html">
+<meta property="og:site_name" content="元宵の杂货铺">
+<meta property="og:description" content="心血来潮，做了个自己可以用的提取颜色的工具，目前Demo非常土鳖，但是基本功能算是有了。
+Demo 地址：https://rvtea.github.io/ColorExtractTool/
+项目地址：https://github.com/Rvtea/ColorExtractTool
+
+引子受一条微博的启发，找到了原始的出处Design Seeds，然后自己思考了下基本原理觉得可以自己做，于是趁着">
+<meta property="og:image" content="http://static.boredpanda.com/blog/wp-content/uploads/2015/10/nature-colors-palette-design-seeds-jessica-colaluca-12.jpg">
+<meta property="og:image" content="https://github.com/Rvtea/ColorExtractTool/blob/master/img/example_1.png">
+<meta property="og:updated_time" content="2016-09-25T07:57:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Color Extract Tool 颜色提取小工具">
+<meta name="twitter:description" content="心血来潮，做了个自己可以用的提取颜色的工具，目前Demo非常土鳖，但是基本功能算是有了。
+Demo 地址：https://rvtea.github.io/ColorExtractTool/
+项目地址：https://github.com/Rvtea/ColorExtractTool
+
+引子受一条微博的启发，找到了原始的出处Design Seeds，然后自己思考了下基本原理觉得可以自己做，于是趁着">
+<meta name="twitter:image" content="http://static.boredpanda.com/blog/wp-content/uploads/2015/10/nature-colors-palette-design-seeds-jessica-colaluca-12.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://rvtea.github.io/2016/09/25/color-extract-tool/"/>
+
+  <title> Color Extract Tool 颜色提取小工具 | 元宵の杂货铺 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">元宵の杂货铺</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Seize Days, Photo Moments</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Color Extract Tool 颜色提取小工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-25T00:00:00+08:00" content="2016-09-25">
+              2016-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front End</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>心血来潮，做了个自己可以用的提取颜色的工具，目前Demo非常土鳖，但是基本功能算是有了。</p>
+<p>Demo 地址：<a href="https://rvtea.github.io/ColorExtractTool/">https://rvtea.github.io/ColorExtractTool/</a></p>
+<p>项目地址：<a href="https://github.com/Rvtea/ColorExtractTool" target="_blank" rel="external">https://github.com/Rvtea/ColorExtractTool</a></p>
+</blockquote>
+<h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>受一条<a href="http://weibo.com/5891820152/E8YUKyFPA?type=comment#_rnd1474784915314" target="_blank" rel="external">微博</a>的启发，找到了原始的出处<a href="http://www.design-seeds.com/" target="_blank" rel="external">Design Seeds</a>，然后自己思考了下基本原理觉得可以自己做，于是趁着还在学习js的初学热情高涨阶段，搞了个Demo玩儿。</p>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><p>我们从图片最终效果来入手分析。</p>
+<p><img src="http://static.boredpanda.com/blog/wp-content/uploads/2015/10/nature-colors-palette-design-seeds-jessica-colaluca-12.jpg" width="400" alt="example" align="center"></p>
+<p>如上图，我们看到最终的效果图里包含一部分原图和抽取出来的主要的颜色，英文称之为Dominant Colors，那么我们的工作首先就变成了</p>
+<ul>
+<li>选取图片并上传，这里涉及到对图片格式的判断</li>
+<li>图片处理，包括生成preview、提取rgb信息、合并相近颜色等</li>
+<li>图片展示，需要把原图（或一部分）连同提取出来的主要颜色用canvas的形式展示出来</li>
+</ul>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h4><p>这一部分网上的demo非常之多，于是我就偷懒没怎么认真写，因为学习JS用的是<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖雪峰的JavaScript教程</a>，于是主要就参考这里面的<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449993875172bbfac4b9764e2d9e2b5a17c706b3db000" target="_blank" rel="external">代码</a>做了基础的判断，自己把重心放在了onload事件上。这部分的代码很好地展示了文件上传中的边界考察并进行简单地处理，我觉得作为初学者有必要好好看看这段代码。</p>
+<h4 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h4><p>这是这个Demo的核心部分，主要是需要考虑三部分的工作，我们按顺序来说明。</p>
+<h5 id="图片预览"><a href="#图片预览" class="headerlink" title="图片预览"></a>图片预览</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (img_preview) &#123;</div><div class="line">    img_preview.setAttribute(<span class="string">'src'</span>, e.target.result);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    img_preview = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</div><div class="line">    img_preview.setAttribute(<span class="string">'id'</span>, <span class="string">'image-preview'</span>);</div><div class="line">    img_preview.setAttribute(<span class="string">'src'</span>, e.target.result);</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'image-preview-before'</span>).appendChild(img_preview);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里代码很好理解，主要是生成img元素来预览图片，考虑到第二次使用的时候页面上已经有了img元素，就直接修改对应文件即可。</p>
+<h5 id="RGB信息提取"><a href="#RGB信息提取" class="headerlink" title="RGB信息提取"></a>RGB信息提取</h5><p>这部分的背景知识其实很简单，就是每张图的每个像素会需要四个值来描述，亦即由(red, green, blue, alpha)所描述的色彩空间，其中alpha一般用作不透明度参数，在这个Demo里面我暂时没有用到，所以代码里也只是取了rgb的数值来进行计算。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// obtain image data</span></div><div class="line"><span class="keyword">let</span> imageData = context.getImageData(<span class="number">0</span>, <span class="number">0</span>, img_width, img_height);</div><div class="line"><span class="keyword">let</span> imagePixelsRgb = [];</div><div class="line"></div><div class="line"><span class="comment">// process the stats</span></div><div class="line"><span class="keyword">var</span> len = imageData.data.length;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i += <span class="number">4</span>) &#123;</div><div class="line">    <span class="keyword">let</span> r = imageData.data[i],</div><div class="line">        g = imageData.data[i + <span class="number">1</span>],</div><div class="line">        b = imageData.data[i + <span class="number">2</span>];</div><div class="line">    imagePixelsRgb.push([r, g, b]);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>显然这里有个疑问就是这里的context是何物。在这里就涉及到canvas的原理了。我们获取图像的像素的数值是通过将图像绘制在一个canvas上，然后再通过canvas的接口获取对应像素点的rgb信息，于是在context.getImageData()执行之前，我们还需要<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</div><div class="line"><span class="keyword">var</span> context = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="keyword">var</span> img_width = <span class="keyword">this</span>.width;</div><div class="line"><span class="keyword">var</span> img_height = <span class="keyword">this</span>.height;</div><div class="line"><span class="comment">// set the size of canvas</span></div><div class="line">canvas.width = (img_width &lt; <span class="number">600</span>) ? img_width : <span class="number">600</span>;</div><div class="line">canvas.height = img_height * canvas.width / img_width + <span class="number">50</span>;</div><div class="line"><span class="keyword">var</span> eachWidth = canvas.width / maxcolors; <span class="comment">// define each color bar width</span></div><div class="line"><span class="comment">// draw image</span></div><div class="line">context.drawImage(<span class="keyword">this</span>, <span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height - <span class="number">50</span>);</div></pre></td></tr></table></figure></p>
+<p>关于宽高的设置是为了满足CSS文件里最大宽度600px的设定所做的妥协，而高度值那里额外增加的50则是为了最终demo里绘制出抽取的颜色所预留的空间。这都是后话了，因为最初的时候我直接设定的就是图片大小的宽高值，毕竟为了能糙快猛地整出来一个Demo，这些都暂时不做细调。</p>
+<h5 id="提取颜色"><a href="#提取颜色" class="headerlink" title="提取颜色"></a>提取颜色</h5><p>这是最核心的算法部分，目前的demo里采用了<a href="https://gist.github.com/nrabinowitz/1104622" target="_blank" rel="external">quantize.js</a>所提供的实现，但在最初的算法里，我的想法非常朴素——既然是找最多的颜色值，那么做个统计然后排序就好了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> len = imageData.data.length;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i += <span class="number">4</span>) &#123;</div><div class="line">    <span class="keyword">let</span> r = imageData.data[i],</div><div class="line">        g = imageData.data[i + <span class="number">1</span>],</div><div class="line">        b = imageData.data[i + <span class="number">2</span>];</div><div class="line">    <span class="keyword">let</span> hex_info = rgbToHex(r, g, b);</div><div class="line">    <span class="keyword">if</span> (!colorInfo[hex_info]) &#123;</div><div class="line">        colorInfo[hex_info] = <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        colorInfo[hex_info]++;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> colorInfoArray = [];</div><div class="line"><span class="keyword">var</span> colorInfoKeys = getSortedKeys(colorInfo);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> colorInfoKeys) &#123;</div><div class="line">    colorInfoArray.push([colorInfoKeys[k], colorInfo[colorInfoKeys[k]]]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然而无情的事实是，一旦图像的大小超出400KB，基本上就得10+秒以上出结果，而且还存在一个严重的UE问题，因为没有合并相近的颜色，导致统计出来的颜色几乎差别都很小！所以这个朴素的算法被我最终抛弃了，我开始研究如何用更快的速度来获取一张图片中的Dominant Colors，我发现了两个办法：</p>
+<ul>
+<li>一方面，通过搜索引擎，了解到给图片划分palette来计算的算法，如果有兴趣，你可以去<a href="https://en.wikipedia.org/wiki/Color_quantization" target="_blank" rel="external">Color Quantization</a>进行进一步的了解，简而言之，这个算法是一种分而治之的思想，大而化小，小而…哈哈哈，那就直接算呗！</li>
+<li>另一方面，我没有将全部的图片都画到canvas上面，换言之，我做了个抽样处理，所以如果你在demo上上传的图片足够清楚的话，你会发现预览图和最终结果图之间还是有一定区别的，但这个trade-off带来了处理速度的提升，基本上1s的数量级就能拿到结果</li>
+</ul>
+<p>所以最终的代码就变得异常简洁，除去引入了quantize.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> maxcolors = <span class="number">5</span>; <span class="comment">// currently only support top 5</span></div><div class="line"><span class="keyword">var</span> cmap = MMCQ.quantize(imagePixelsRgb, maxcolors)</div><div class="line"><span class="keyword">var</span> topResults = cmap.palette();</div><div class="line"><span class="keyword">var</span> topFive = topResults.map((x) =&gt; rgbToHex(x[<span class="number">0</span>], x[<span class="number">1</span>], x[<span class="number">2</span>]));</div></pre></td></tr></table></figure></p>
+<h3 id="Demo效果"><a href="#Demo效果" class="headerlink" title="Demo效果"></a>Demo效果</h3><p>直接上图。</p>
+<p><img src="https://github.com/Rvtea/ColorExtractTool/blob/master/img/example_1.png" width="400" alt="example" align="center"></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>目前的Demo还很粗糙，值得改进的地方很多，但已经实现了最核心的功能，接下来会考虑重构代码，并支持配置参数。</p>
+<p>作为JS初学者，受StackOverflow和Github上的源码帮助甚多，很粗糙的一个小工具，作为自己JS学习路上的一个小的标记，代码写的比较挫，欢迎各种拍砖。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Front-End/" rel="tag">#Front End</a>
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yuan Xiao" />
+          <p class="site-author-name" itemprop="name">Yuan Xiao</p>
+          <p class="site-description motion-element" itemprop="description">Blogger | Programmer | Photographer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本原理"><span class="nav-number">2.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图片上传"><span class="nav-number">3.1.</span> <span class="nav-text">图片上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片处理"><span class="nav-number">3.2.</span> <span class="nav-text">图片处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#图片预览"><span class="nav-number">3.2.1.</span> <span class="nav-text">图片预览</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RGB信息提取"><span class="nav-number">3.2.2.</span> <span class="nav-text">RGB信息提取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#提取颜色"><span class="nav-number">3.2.3.</span> <span class="nav-text">提取颜色</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo效果"><span class="nav-number">4.</span> <span class="nav-text">Demo效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuan Xiao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
