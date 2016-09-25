@@ -350,7 +350,7 @@
 </ul>
 <p>所以最终的代码就变得异常简洁，除去引入了quantize.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> maxcolors = <span class="number">5</span>; <span class="comment">// currently only support top 5</span></div><div class="line"><span class="keyword">var</span> cmap = MMCQ.quantize(imagePixelsRgb, maxcolors)</div><div class="line"><span class="keyword">var</span> topResults = cmap.palette();</div><div class="line"><span class="keyword">var</span> topFive = topResults.map((x) =&gt; rgbToHex(x[<span class="number">0</span>], x[<span class="number">1</span>], x[<span class="number">2</span>]));</div></pre></td></tr></table></figure></p>
 <h3 id="Demo效果"><a href="#Demo效果" class="headerlink" title="Demo效果"></a>Demo效果</h3><p>直接上图。</p>
-<p><img src="https://github.com/Rvtea/ColorExtractTool/blob/master/img/example_1.png" width="400" alt="example" align="center"></p>
+<p><img src="https://github.com/Rvtea/ColorExtractTool/raw/master/img/example_1.png" width="400" alt="example" align="center"></p>
 <h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>目前的Demo还很粗糙，值得改进的地方很多，但已经实现了最核心的功能，接下来会考虑重构代码，并支持配置参数。</p>
 <p>作为JS初学者，受StackOverflow和Github上的源码帮助甚多，很粗糙的一个小工具，作为自己JS学习路上的一个小的标记，代码写的比较挫，欢迎各种拍砖。</p>
 
