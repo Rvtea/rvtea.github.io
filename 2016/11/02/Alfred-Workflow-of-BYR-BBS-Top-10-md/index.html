@@ -1,0 +1,696 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Alfred,Node.js,JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
+如何撰写一个Node.js爬虫？这也不是个问题。
+但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
+所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
+使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alfred_Workflow_of_BYR_BBS_Top_10.md">
+<meta property="og:url" content="http://rvtea.github.io/2016/11/02/Alfred-Workflow-of-BYR-BBS-Top-10-md/index.html">
+<meta property="og:site_name" content="元宵の杂货铺">
+<meta property="og:description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
+如何撰写一个Node.js爬虫？这也不是个问题。
+但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
+所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
+使用">
+<meta property="og:image" content="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif">
+<meta property="og:updated_time" content="2016-11-03T09:21:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Alfred_Workflow_of_BYR_BBS_Top_10.md">
+<meta name="twitter:description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
+如何撰写一个Node.js爬虫？这也不是个问题。
+但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
+所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
+使用">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://rvtea.github.io/2016/11/02/Alfred-Workflow-of-BYR-BBS-Top-10-md/"/>
+
+  <title> Alfred_Workflow_of_BYR_BBS_Top_10.md | 元宵の杂货铺 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">元宵の杂货铺</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Seize Days, Photo Moments</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Alfred_Workflow_of_BYR_BBS_Top_10.md
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T00:00:00+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Extensions/" itemprop="url" rel="index">
+                    <span itemprop="name">Extensions</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>如何撰写一个Alfred Workflow? 这个不是个问题。</p>
+<p>如何撰写一个Node.js爬虫？这也不是个问题。</p>
+<p>但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾</p>
+<p>所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><img src="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif" alt=""></p>
+<a id="more"></a>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><h3 id="先写一个node-js爬虫"><a href="#先写一个node-js爬虫" class="headerlink" title="先写一个node.js爬虫"></a>先写一个node.js爬虫</h3><p>这个成套的解决方案一堆堆，但我们并不需要真正去爬很多内容，所以也就不涉及并发统计、数据库存储等问题，核心其实总结成就是一句话：发送请求，获取响应，解析响应，组成返回结果展示。<br>于是经过一番折腾，代码就有了。这里使用的是基于request、cheerio、iconv-lite的解决方案。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">"cheerio"</span>),</div><div class="line">    iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</div><div class="line"><span class="keyword">var</span> bbsurl = <span class="string">'https://bbs.byr.cn/rss/topten'</span>;</div><div class="line"></div><div class="line">request(&#123;</div><div class="line">    url: bbsurl,</div><div class="line">    encoding: <span class="literal">null</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, res, body</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'err happens'</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> gbkHtml = iconv.decode(body, <span class="string">'gb2312'</span>)</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(gbkHtml, &#123;</div><div class="line">        decodeEntities: <span class="literal">false</span>,</div><div class="line">        xmlMode: <span class="literal">true</span></div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">'item'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">idx, element</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> el = $(element);</div><div class="line">        <span class="keyword">var</span> title = el.find(<span class="string">"title"</span>).text(),</div><div class="line">            link_url = el.find(<span class="string">"link"</span>).text(),</div><div class="line">            author = el.find(<span class="string">"author"</span>).text(),</div><div class="line">            index = idx + <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"-----------------"</span>);</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"title      : "</span> + title);</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"author     : "</span> + author);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="与Alfred-Workflow集成"><a href="#与Alfred-Workflow集成" class="headerlink" title="与Alfred Workflow集成"></a>与Alfred Workflow集成</h3><p>这块是本文的核心。首先我们需要解决如何在alfred下run node.js的问题。庆幸的是有个简单的hack在alfred 2风靡的时候就已经有了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/node &lt;&lt;-<span class="string">'CODE'</span></div><div class="line">require(<span class="string">"./index"</span>)(<span class="string">"&#123;query&#125;"</span>);</div><div class="line">CODE</div></pre></td></tr></table></figure></p>
+<p>然而这并非我们需要的，显然我们并不需要任何参数，因为展示十大是个没法选择的行为。所以我们先选择好触发的指令——bbs。然后选择好模块Script Filter，在里面选择好使用bash或zsh即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/node server.js</div></pre></td></tr></table></figure></p>
+<p>因此我们的核心就变成了撰写server.js。根据上文的爬虫，我们需要解决两个问题：</p>
+<ul>
+<li>用alfred展示九条结果（其实是10条，然而这个是alfred自身限制，那么就九大吧，第十条通过↓键来解决。）</li>
+<li>选中对应十大之后可以回车打开浏览器查看详情（当然必须先有登录的session，否则就先登录再看吧）</li>
+</ul>
+<p>第一个问题费了一点儿劲儿，因为这个之前并不了解。经过查询，发觉Alfred使用的是xml形式的结构数据，如果console输出满足这个xml的要求，就能给你show出来。详情可以查看<a href="http://alfredworkflow.readthedocs.io/en/latest/xml_format.html" target="_blank" rel="external">这里</a>。那么就需要修改我们的console.log部分，让最终的结果组成如下的形式。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">items</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span> <span class="attr">uid</span>=<span class="string">"top1"</span> <span class="attr">arg</span>=<span class="string">"https://bbs.byr.cn/article/Friends/1771753"</span> <span class="attr">valid</span>=<span class="string">"yes"</span> <span class="attr">autocomplete</span>=<span class="string">"【代征】温油室友诚意征蓝票"</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">title</span>&gt;</span>【代征】温油室友诚意征蓝票<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">subtitle</span>&gt;</span>lovelysee<span class="tag">&lt;/<span class="name">subtitle</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">icon</span>&gt;</span>icon.png<span class="tag">&lt;/<span class="name">icon</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">       ...省略部分内容</div><div class="line">       <span class="tag">&lt;<span class="name">item</span> <span class="attr">uid</span>=<span class="string">"top10"</span> <span class="attr">arg</span>=<span class="string">"https://bbs.byr.cn/article/WorkLife/1056892"</span> <span class="attr">valid</span>=<span class="string">"yes"</span> <span class="attr">autocomplete</span>=<span class="string">"马上入职百度inf，如何才能快速升职加薪，达到70万，很缺钱的那"</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">title</span>&gt;</span>马上入职百度inf，如何才能快速升职加薪，达到70万，很缺钱的那<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">subtitle</span>&gt;</span>xiaozhangxue<span class="tag">&lt;/<span class="name">subtitle</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">icon</span>&gt;</span>icon.png<span class="tag">&lt;/<span class="name">icon</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">items</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这实际就是个拼接string的事情。代码就需要反复测试再提交了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">"cheerio"</span>),</div><div class="line">    iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> bbsurl = <span class="string">'https://bbs.byr.cn/rss/topten'</span>;</div><div class="line"><span class="keyword">var</span> tmp = <span class="string">"&lt;?xml version=\"1.0\"?&gt;&lt;items&gt;"</span>;</div><div class="line"></div><div class="line">request(&#123;</div><div class="line">    url: bbsurl,</div><div class="line">    encoding: <span class="literal">null</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, res, body</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'err happens'</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> gbkHtml = iconv.decode(body, <span class="string">'gb2312'</span>)</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(gbkHtml, &#123;</div><div class="line">        decodeEntities: <span class="literal">false</span>,</div><div class="line">        xmlMode: <span class="literal">true</span></div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">'item'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">idx, element</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> el = $(element);</div><div class="line">        <span class="keyword">var</span> title = el.find(<span class="string">"title"</span>).text(),</div><div class="line">            link_url = el.find(<span class="string">"link"</span>).text(),</div><div class="line">            author = el.find(<span class="string">"author"</span>).text(),</div><div class="line">            index = idx + <span class="number">1</span>;</div><div class="line">        tmp += <span class="string">"&lt;item uid=\"top"</span> + index + <span class="string">"\" arg=\""</span> + link_url + <span class="string">"\" valid=\"yes\" autocomplete=\""</span> + title + <span class="string">"\"&gt;&lt;title&gt;"</span> + title + <span class="string">"&lt;/title&gt;&lt;subtitle&gt;"</span> + author + <span class="string">"&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;"</span>;</div><div class="line">    &#125;);</div><div class="line">    tmp = tmp + <span class="string">"&lt;/items&gt;"</span>;</div><div class="line">    <span class="built_in">console</span>.log(tmp);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>上述代码同时解决了如何选中后回车能打开URL的问题。在我们的workflow的第一个script filter模块后面加上一个open url的模块，然后在xml组成中将arg参数赋成对应的url即可。Alfred就会根据arg参数来作为url参数去打开，这些可以在Open URL的模块中找到说明。</p>
+<p>综上，事情搞定了！剩下就是删掉多余代码，发布Alfred Workflow到github。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>其实思路有了之后，用什么语言实现只是个途径不同而已。</p>
+<p>希望这个workflow能陪伴大家品悦每天的十大。</p>
+<p>做了一点微小的工作，谢谢大家。(￣▽￣)”</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Alfred/" rel="tag">#Alfred</a>
+          
+            <a href="/tags/Node-js/" rel="tag">#Node.js</a>
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/28/ma-jiang-mgmt-tool/" rel="next" title="Ma Jiang Mgmt Tool 麻将积分小工具">
+                <i class="fa fa-chevron-left"></i> Ma Jiang Mgmt Tool 麻将积分小工具
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Yuan Xiao" />
+          <p class="site-author-name" itemprop="name">Yuan Xiao</p>
+          <p class="site-description motion-element" itemprop="description">Blogger | Programmer | Photographer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rvtea" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/xukan_byr" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/rvtea" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发过程"><span class="nav-number">3.</span> <span class="nav-text">开发过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先写一个node-js爬虫"><span class="nav-number">3.1.</span> <span class="nav-text">先写一个node.js爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与Alfred-Workflow集成"><span class="nav-number">3.2.</span> <span class="nav-text">与Alfred Workflow集成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuan Xiao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
