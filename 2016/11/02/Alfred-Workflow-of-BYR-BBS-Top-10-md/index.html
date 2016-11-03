@@ -88,25 +88,28 @@
 如何撰写一个Node.js爬虫？这也不是个问题。
 但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
 所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
-使用">
+使用
+开发过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Alfred_Workflow_of_BYR_BBS_Top_10.md">
+<meta property="og:title" content="Alfred Workflow of BYR BBS Top 10">
 <meta property="og:url" content="http://rvtea.github.io/2016/11/02/Alfred-Workflow-of-BYR-BBS-Top-10-md/index.html">
 <meta property="og:site_name" content="元宵の杂货铺">
 <meta property="og:description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
 如何撰写一个Node.js爬虫？这也不是个问题。
 但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
 所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
-使用">
+使用
+开发过程">
 <meta property="og:image" content="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif">
-<meta property="og:updated_time" content="2016-11-03T09:21:14.000Z">
+<meta property="og:updated_time" content="2016-11-03T09:30:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alfred_Workflow_of_BYR_BBS_Top_10.md">
+<meta name="twitter:title" content="Alfred Workflow of BYR BBS Top 10">
 <meta name="twitter:description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
 如何撰写一个Node.js爬虫？这也不是个问题。
 但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾
 所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）
-使用">
+使用
+开发过程">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif">
 
 
@@ -130,7 +133,7 @@
 
   <link rel="canonical" href="http://rvtea.github.io/2016/11/02/Alfred-Workflow-of-BYR-BBS-Top-10-md/"/>
 
-  <title> Alfred_Workflow_of_BYR_BBS_Top_10.md | 元宵の杂货铺 </title>
+  <title> Alfred Workflow of BYR BBS Top 10 | 元宵の杂货铺 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +273,7 @@
             
             
               
-                Alfred_Workflow_of_BYR_BBS_Top_10.md
+                Alfred Workflow of BYR BBS Top 10
               
             
           </h1>
@@ -339,8 +342,8 @@
 <p>但如何撰写一个基于Node.js的Alfred Workflow, 这个问题就比较不好回答了，因为谷歌不到（大雾</p>
 <p>所以这篇文章，就是为了回答这个问题来的。（此处应有掌声╮(￣▽￣)╭）</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><img src="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif" alt=""></p>
-<a id="more"></a>
-<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><h3 id="先写一个node-js爬虫"><a href="#先写一个node-js爬虫" class="headerlink" title="先写一个node.js爬虫"></a>先写一个node.js爬虫</h3><p>这个成套的解决方案一堆堆，但我们并不需要真正去爬很多内容，所以也就不涉及并发统计、数据库存储等问题，核心其实总结成就是一句话：发送请求，获取响应，解析响应，组成返回结果展示。<br>于是经过一番折腾，代码就有了。这里使用的是基于request、cheerio、iconv-lite的解决方案。</p>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><a id="more"></a>
+<h3 id="先写一个node-js爬虫"><a href="#先写一个node-js爬虫" class="headerlink" title="先写一个node.js爬虫"></a>先写一个node.js爬虫</h3><p>这个成套的解决方案一堆堆，但我们并不需要真正去爬很多内容，所以也就不涉及并发统计、数据库存储等问题，核心其实总结成就是一句话：发送请求，获取响应，解析响应，组成返回结果展示。<br>于是经过一番折腾，代码就有了。这里使用的是基于request、cheerio、iconv-lite的解决方案。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">"cheerio"</span>),</div><div class="line">    iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</div><div class="line"><span class="keyword">var</span> bbsurl = <span class="string">'https://bbs.byr.cn/rss/topten'</span>;</div><div class="line"></div><div class="line">request(&#123;</div><div class="line">    url: bbsurl,</div><div class="line">    encoding: <span class="literal">null</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, res, body</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'err happens'</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> gbkHtml = iconv.decode(body, <span class="string">'gb2312'</span>)</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(gbkHtml, &#123;</div><div class="line">        decodeEntities: <span class="literal">false</span>,</div><div class="line">        xmlMode: <span class="literal">true</span></div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">'item'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">idx, element</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> el = $(element);</div><div class="line">        <span class="keyword">var</span> title = el.find(<span class="string">"title"</span>).text(),</div><div class="line">            link_url = el.find(<span class="string">"link"</span>).text(),</div><div class="line">            author = el.find(<span class="string">"author"</span>).text(),</div><div class="line">            index = idx + <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"-----------------"</span>);</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"title      : "</span> + title);</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"author     : "</span> + author);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h3 id="与Alfred-Workflow集成"><a href="#与Alfred-Workflow集成" class="headerlink" title="与Alfred Workflow集成"></a>与Alfred Workflow集成</h3><p>这块是本文的核心。首先我们需要解决如何在alfred下run node.js的问题。庆幸的是有个简单的hack在alfred 2风靡的时候就已经有了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/node &lt;&lt;-<span class="string">'CODE'</span></div><div class="line">require(<span class="string">"./index"</span>)(<span class="string">"&#123;query&#125;"</span>);</div><div class="line">CODE</div></pre></td></tr></table></figure></p>
 <p>然而这并非我们需要的，显然我们并不需要任何参数，因为展示十大是个没法选择的行为。所以我们先选择好触发的指令——bbs。然后选择好模块Script Filter，在里面选择好使用bash或zsh即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/node server.js</div></pre></td></tr></table></figure></p>
