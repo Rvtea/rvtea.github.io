@@ -101,7 +101,7 @@
 使用
 开发过程">
 <meta property="og:image" content="https://raw.githubusercontent.com/Rvtea/Rvtea_Alfred_Workflows/master/assets/bbstop10.gif">
-<meta property="og:updated_time" content="2016-11-03T09:30:00.000Z">
+<meta property="og:updated_time" content="2017-01-16T05:33:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alfred Workflow of BYR BBS Top 10">
 <meta name="twitter:description" content="引子如何撰写一个Alfred Workflow? 这个不是个问题。
@@ -359,6 +359,16 @@
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>其实思路有了之后，用什么语言实现只是个途径不同而已。</p>
 <p>希望这个workflow能陪伴大家品悦每天的十大。</p>
 <p>做了一点微小的工作，谢谢大家。(￣▽￣)”</p>
+<hr>
+<blockquote>
+<p>2017.1.16 更新</p>
+</blockquote>
+<h2 id="支持其他版面"><a href="#支持其他版面" class="headerlink" title="支持其他版面"></a>支持其他版面</h2><p>这个其实从code角度比较好做，真正的代码就几行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> boardName = process.argv[<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> bbsurl = <span class="string">""</span>;</div><div class="line"><span class="keyword">if</span> (boardName === <span class="string">""</span>) &#123;</div><div class="line">    bbsurl = <span class="string">"https://bbs.byr.cn/rss/topten"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    bbsurl = <span class="string">"https://bbs.byr.cn/rss/board-"</span> + boardName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里用node.js内部的<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">真正的难点，其实也不能算难点，主要是debug的时候花费了很多时间。第一个是Alfred Workflow的第一步配置那里需要选择加上Arguments的选项，其次在执行脚本的时候，选择以```&apos;&#123;query&#125;&apos;```的形式加载参数到执行脚本的那一行。执行脚本那一行改为：</div><div class="line">``` Bash</div><div class="line">/usr/local/bin/node server.js &apos;&#123;query&#125;&apos;</div></pre></td></tr></table></figure></p>
+<p>其他还需要配置的地方就是Run Behavior那里，考虑到要输入版面名称，不能立即执行脚本，而是让Alfred稍等一会儿。</p>
+<h3 id="Debug的坑"><a href="#Debug的坑" class="headerlink" title="Debug的坑"></a>Debug的坑</h3><p>这里简单说下debug Alfred Workflow的时候的坑。因为Alfred是以程序输出满足一定的格式才能输出到它的UI上面的，所以一定要保持最后的log里的输出满足这个格式。但是为了调试程序，我一直加了很多<code>console.log(variables)</code>在程序里，导致一直报错，自己却查不出来原因。后来突然意识到自己有多蠢，终于把程序搞定了。</p>
+<p>所以如果debug觉得程序输出可以，那就应该立即把一些不必要的输出语句干掉。切记切记。</p>
 
       
     </div>
@@ -553,7 +563,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发过程"><span class="nav-number">3.</span> <span class="nav-text">开发过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先写一个node-js爬虫"><span class="nav-number">3.1.</span> <span class="nav-text">先写一个node.js爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与Alfred-Workflow集成"><span class="nav-number">3.2.</span> <span class="nav-text">与Alfred Workflow集成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发过程"><span class="nav-number">3.</span> <span class="nav-text">开发过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先写一个node-js爬虫"><span class="nav-number">3.1.</span> <span class="nav-text">先写一个node.js爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与Alfred-Workflow集成"><span class="nav-number">3.2.</span> <span class="nav-text">与Alfred Workflow集成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持其他版面"><span class="nav-number">5.</span> <span class="nav-text">支持其他版面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debug的坑"><span class="nav-number">5.1.</span> <span class="nav-text">Debug的坑</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
