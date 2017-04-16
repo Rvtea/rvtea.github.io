@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Git,Tools," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="Blogger | Programmer | Photographer">
+<meta name="description" content="本来想起个名字叫“跟 Git 的100件小事”，后来觉得太矫情了，于是改成了“笨办法用 Git”。
+
+最近在公司做的项目有 git 使用的需求，于是钻研了一下，现在想着把这些东西整理一下写篇博客来加深记忆。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Using Git The Hard Way.md">
+<meta property="og:title" content="Using Git The Hard Way">
 <meta property="og:url" content="http://rvtea.github.io/2017/04/07/Using-Git-The-Hard-Way/index.html">
 <meta property="og:site_name" content="元宵の杂货铺">
-<meta property="og:description" content="Blogger | Programmer | Photographer">
-<meta property="og:updated_time" content="2017-04-07T09:21:59.000Z">
+<meta property="og:description" content="本来想起个名字叫“跟 Git 的100件小事”，后来觉得太矫情了，于是改成了“笨办法用 Git”。
+
+最近在公司做的项目有 git 使用的需求，于是钻研了一下，现在想着把这些东西整理一下写篇博客来加深记忆。">
+<meta property="og:updated_time" content="2017-04-11T05:45:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Using Git The Hard Way.md">
-<meta name="twitter:description" content="Blogger | Programmer | Photographer">
+<meta name="twitter:title" content="Using Git The Hard Way">
+<meta name="twitter:description" content="本来想起个名字叫“跟 Git 的100件小事”，后来觉得太矫情了，于是改成了“笨办法用 Git”。
+
+最近在公司做的项目有 git 使用的需求，于是钻研了一下，现在想着把这些东西整理一下写篇博客来加深记忆。">
 
 
 
@@ -116,7 +122,7 @@
 
   <link rel="canonical" href="http://rvtea.github.io/2017/04/07/Using-Git-The-Hard-Way/"/>
 
-  <title> Using Git The Hard Way.md | 元宵の杂货铺 </title>
+  <title> Using Git The Hard Way | 元宵の杂货铺 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +262,7 @@
             
             
               
-                Using Git The Hard Way.md
+                Using Git The Hard Way
               
             
           </h1>
@@ -273,6 +279,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Productivity/" itemprop="url" rel="index">
+                    <span itemprop="name">Productivity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -301,7 +326,46 @@
       
 
       
-        
+        <blockquote>
+<p>本来想起个名字叫“跟 Git 的100件小事”，后来觉得太矫情了，于是改成了“笨办法用 Git”。</p>
+</blockquote>
+<p>最近在公司做的项目有 git 使用的需求，于是钻研了一下，现在想着把这些东西整理一下写篇博客来加深记忆。</p>
+<a id="more"></a>
+<h2 id="提取-Jira-Ticket"><a href="#提取-Jira-Ticket" class="headerlink" title="提取 Jira Ticket"></a>提取 Jira Ticket</h2><p>关于创业公司有一个笑话是说：“<a href="https://twitter.com/kenkeiter/status/838809484843749376" target="_blank" rel="external">Your startup either dies, or it lives long enough to use JIRA.</a>”。不得不说，Jira 是个挺不错的项目管理系统，虽然里面各种 feature 太错综复杂，但对于 track 一个大的 team 的工作而言，已经做的非常好了。</p>
+<h4 id="需求陈述"><a href="#需求陈述" class="headerlink" title="需求陈述"></a>需求陈述</h4><blockquote>
+<p>需要从浩瀚的 git commit 中去提取某一段时间完成的 Jira ticekts，因为 Jira 的 filter 目前还无法满足我们的一些特殊查询需要。</p>
+</blockquote>
+<p>一般使用 Jira 的公司的 convention 是通过在提交或者分支创建的时候加上 Jira 的 ticket 号来 track 工作，例如 <code>d_OPP-12345_a_specific_feature</code>。下面我就以分支上填写 Jira ticket号来分析如何从 commit info 去提取 Jira ticket，亦即从 git commit info 中去提取出 <code>OPP-12345</code>。</p>
+<h4 id="分析-git-commit-info"><a href="#分析-git-commit-info" class="headerlink" title="分析 git commit info"></a>分析 git commit info</h4><p>首先我们分析一下常见的 commit info。（感觉分析好长啊，不太想写…）</p>
+<p>一般而言对于一个大的 Team，我们无法控制每个人撰写 git commit message 的格式，所以我们能利用的其实只有 git 本身提供的一些 merge info 来进行信息提取。而对于真正进入我们 production base 的代码（我们以 dev 分支为例），往往都会有这么一条记录： <code>Merge branch &#39;d_OPP-12345_a_specific_feature&#39; into &#39;dev&#39;</code>。显然这条信息对于我们十分关键：</p>
+<ul>
+<li>提供了关于 Jira ticket 号的信息</li>
+<li>只需要过滤这些跟 merge 直接相关的 commit，减少了数据规模，同时筛掉了无意义分支内的 commit info</li>
+</ul>
+<p>于是事情就变成了从 <figure class="highlight plain"><figcaption><span>log --merges ```里去提取我们需要的 ticket 信息。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 获取提交 ticket 信息</div><div class="line">首先我们需要获取两次 commit 之间的所有提交：</div><div class="line"></div><div class="line">``` bash</div><div class="line">filter_rows=( $(git -C $code_path log $branch --pretty=&apos;%h, %an, %ai, %s&apos; --merges | nl | grep -E &quot;$commit_start|$commit_end&quot; | cut -f1) )</div></pre></td></tr></table></figure></p>
+<p>然后我们就可以批量进行 ticket 的提取工作：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filter_tickets=( $(git -C <span class="variable">$code_path</span> <span class="built_in">log</span> <span class="variable">$branch</span> --pretty=<span class="string">'%h, %an, %ai, %s'</span> --merges | nl | awk <span class="string">'NR &gt;= v1 &amp;&amp; NR &lt;= v2'</span> v1=<span class="string">"<span class="variable">$&#123;filter_rows[0]&#125;</span>"</span> v2=<span class="string">"<span class="variable">$&#123;filter_rows[1]&#125;</span>"</span> | grep -o <span class="string">"Merge branch .* into .*<span class="variable">$branch</span>"</span> | grep -ioE <span class="string">"OPP(_|-)[1-9]&#123;1&#125;[0-9]+"</span> | tr a-z A-Z | awk <span class="string">'/OPP/&#123;gsub("_","-"); print $0&#125;'</span> | sort | uniq | xargs | tr <span class="string">' '</span> <span class="string">','</span>) )</div></pre></td></tr></table></figure></p>
+<p>至此工作完成了一半，因为往往我们还需要和 Jira 系统做个集成，通过 filter 出来的这些 ticket 信息去获取一些别的字段的内容，但这就不是本文的核心了，在此直接略过。感兴趣的朋友可以自己研究一下用 node 写一个抓取 jira 内容的脚本与本文的内容提示做个集成即可。</p>
+<hr>
+<h2 id="确认某次-commit-是否存在于某个-branch"><a href="#确认某次-commit-是否存在于某个-branch" class="headerlink" title="确认某次 commit 是否存在于某个 branch"></a>确认某次 commit 是否存在于某个 branch</h2><p>这个问题其实我困惑很久了，找了很多 StackOverflow 的答案也不太尽如人意。于是想着自己撸一个吧。刚好做的项目里存在一个需求是说确认某一次 hotfix 的提交都被 merge 到主分支 master 了。（显然这里的需求被我抽象成可以对外发布的版本了 😌）</p>
+<h4 id="获取提交时间戳"><a href="#获取提交时间戳" class="headerlink" title="获取提交时间戳"></a>获取提交时间戳</h4><p>为了尽可能准确地保证某段时间内的提交都被 merge 到了主分支上，我们需要获取准确的提交时间戳（其实这事儿做完了之后我自己的想法是 git commit sha1 已经足够准确，我可能有点钻牛角尖了…）。我自己封装了一个函数来做这个事情。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">get_commit_timestamp</span></span>()</div><div class="line">&#123;</div><div class="line">	<span class="comment"># $1 should treat as code_repo_path</span></div><div class="line">	<span class="comment"># $2 should treat as code branch</span></div><div class="line">	<span class="comment"># $3 should treat as commit sha1</span></div><div class="line">	git -C <span class="variable">$1</span> <span class="built_in">log</span> <span class="variable">$2</span> --oneline --pretty=<span class="string">"%h %ai"</span> | grep <span class="variable">$3</span> | awk <span class="string">'&#123;$1=""; print $0&#125;'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="一些问题的解答"><a href="#一些问题的解答" class="headerlink" title="一些问题的解答"></a>一些问题的解答</h2><p>这里收集了一些我自己对于 git 使用过程中的问题的总结。</p>
+<h4 id="Fast-Forward-是何方神圣？"><a href="#Fast-Forward-是何方神圣？" class="headerlink" title="Fast Forward 是何方神圣？"></a>Fast Forward 是何方神圣？</h4><h2 id="一些常用-Git-命令"><a href="#一些常用-Git-命令" class="headerlink" title="一些常用 Git 命令"></a>一些常用 Git 命令</h2><p>从上面的需求实现里总结了一下有些有用的小命令以飨(xiǎng)读者。也许上面的内容并不适合你，但下面这些命令里，总有一个能让你在日常的 coding 中用到。</p>
+<h4 id="不切换路径查询-git-log"><a href="#不切换路径查询-git-log" class="headerlink" title="不切换路径查询 git log"></a>不切换路径查询 git log</h4><blockquote>
+<p>git -C targeted/code/repo/path log</p>
+</blockquote>
+<h4 id="不切换分支查询-git-log"><a href="#不切换分支查询-git-log" class="headerlink" title="不切换分支查询 git log"></a>不切换分支查询 git log</h4><blockquote>
+<p>git log branch_name </p>
+</blockquote>
+<p>这个很有用，可以在 master 分支的时候去查询 dev 分支上的 code 变化情况。</p>
+<h4 id="临时rollback某个文件"><a href="#临时rollback某个文件" class="headerlink" title="临时rollback某个文件"></a>临时rollback某个文件</h4><blockquote>
+<p>git checkout <commit-id> – /path/to/file</commit-id></p>
+</blockquote>
+<p>上述文件使用完毕测试完毕，恢复回最新版本</p>
+<blockquote>
+<p>git reset HEAD /path/to/file</p>
+<p>git checkout /path/to/file</p>
+</blockquote>
+
       
     </div>
 
@@ -320,6 +384,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+            <a href="/tags/Tools/" rel="tag">#Tools</a>
+          
+        </div>
       
 
       
@@ -417,7 +489,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -481,7 +553,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#提取-Jira-Ticket"><span class="nav-number">1.</span> <span class="nav-text">提取 Jira Ticket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求陈述"><span class="nav-number">1.0.1.</span> <span class="nav-text">需求陈述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-git-commit-info"><span class="nav-number">1.0.2.</span> <span class="nav-text">分析 git commit info</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确认某次-commit-是否存在于某个-branch"><span class="nav-number">2.</span> <span class="nav-text">确认某次 commit 是否存在于某个 branch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取提交时间戳"><span class="nav-number">2.0.1.</span> <span class="nav-text">获取提交时间戳</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些问题的解答"><span class="nav-number">3.</span> <span class="nav-text">一些问题的解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-Forward-是何方神圣？"><span class="nav-number">3.0.1.</span> <span class="nav-text">Fast Forward 是何方神圣？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些常用-Git-命令"><span class="nav-number">4.</span> <span class="nav-text">一些常用 Git 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不切换路径查询-git-log"><span class="nav-number">4.0.1.</span> <span class="nav-text">不切换路径查询 git log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不切换分支查询-git-log"><span class="nav-number">4.0.2.</span> <span class="nav-text">不切换分支查询 git log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#临时rollback某个文件"><span class="nav-number">4.0.3.</span> <span class="nav-text">临时rollback某个文件</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
